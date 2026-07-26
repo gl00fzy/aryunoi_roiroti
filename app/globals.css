@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #18181b;
+  --color-dark: #111111;
+  --color-rotee: #9b1315;
+  --color-south: #027361;
+  --color-south-light: #04a882;
+  --color-rotee-light: #c41518;
+  --color-gray: #f4f4f5;
+  --color-gray-border: #e4e4e7;
+  --color-gray-text: #71717a;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: "Noto Sans Thai", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Noto Sans Thai", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.rotee-highlight {
+  color: var(--color-rotee);
+  font-weight: 700;
+}
+
+.south-highlight {
+  color: var(--color-south);
+  font-weight: 700;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-south);
+  border-radius: 3px;
+}
+
+/* Transition utilities */
+.transition-all-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section padding */
+.section-pad {
+  padding: 5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 6rem 2rem;
+  }
+}
