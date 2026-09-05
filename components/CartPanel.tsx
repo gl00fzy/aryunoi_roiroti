@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { X, Minus, Plus, Trash2, Clock, UtensilsCrossed, ShoppingBag, Truck } from "lucide-react";
 import { useCartStore, OrderType } from "@/lib/cartStore";
 import Image from "next/image";
@@ -17,7 +17,25 @@ const orderTypeConfig: { type: OrderType; label: string; icon: React.ReactNode }
 ];
 
 export default function CartPanel({ open, onClose, onCheckout }: CartPanelProps) {
-  const { items, orderType, pickupTime, customerNote, removeItem, updateQuantity, setOrderType, setPickupTime, setCustomerNote, totalPrice, totalItems } = useCartStore();
+  const {
+    items,
+    orderType,
+    pickupTime,
+    customerNote,
+    customerName,
+    customerPhone,
+    deliveryAddress,
+    removeItem,
+    updateQuantity,
+    setOrderType,
+    setPickupTime,
+    setCustomerNote,
+    setCustomerName,
+    setCustomerPhone,
+    setDeliveryAddress,
+    totalPrice,
+    totalItems,
+  } = useCartStore();
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -129,13 +147,25 @@ export default function CartPanel({ open, onClose, onCheckout }: CartPanelProps)
                         )}
                       </p>
                       {cartItem.selectedToppings.length > 0 && (
-                        <p style={{ color: "#71717a", fontSize: 12, margin: "0 0 0.35rem", lineHeight: 1.4 }}>
+                        <p style={{ color: "#71717a", fontSize: 12, margin: "0 0 0.25rem", lineHeight: 1.4 }}>
                           + {cartItem.selectedToppings.map((t) => t.name.replace("เพิ่ม", "")).join(", ")}
+                        </p>
+                      )}
+                      {(cartItem.selectedDrinkTemp || cartItem.selectedSweetness || cartItem.selectedServingStyle) && (
+                        <p style={{ color: "#027361", fontSize: 12, margin: "0 0 0.35rem", fontWeight: 600 }}>
+                          {[
+                            cartItem.selectedDrinkTemp,
+                            cartItem.selectedSweetness,
+                            cartItem.selectedServingStyle,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")}
                         </p>
                       )}
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                           <button
+                            aria-label="ลดจำนวน"
                             onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}
                             style={{ width: 26, height: 26, borderRadius: "50%", border: "1px solid #d4d4d8", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                           >
@@ -143,6 +173,7 @@ export default function CartPanel({ open, onClose, onCheckout }: CartPanelProps)
                           </button>
                           <span style={{ fontWeight: 700, fontSize: 15, minWidth: 20, textAlign: "center" }}>{cartItem.quantity}</span>
                           <button
+                            aria-label="เพิ่มจำนวน"
                             onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
                             style={{ width: 26, height: 26, borderRadius: "50%", border: "none", background: "#027361", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                           >
@@ -152,6 +183,7 @@ export default function CartPanel({ open, onClose, onCheckout }: CartPanelProps)
                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                           <span style={{ color: "#027361", fontWeight: 800, fontSize: 14 }}>฿{cartItem.subtotal}</span>
                           <button
+                            aria-label="ลบรายการ"
                             onClick={() => removeItem(cartItem.id)}
                             style={{ background: "none", border: "none", cursor: "pointer", padding: "0.2rem", color: "#9b1315" }}
                           >
@@ -224,6 +256,79 @@ export default function CartPanel({ open, onClose, onCheckout }: CartPanelProps)
                     onBlur={(e) => ((e.currentTarget as HTMLInputElement).style.borderColor = "#e4e4e7")}
                   />
                   <p style={{ color: "#a1a1aa", fontSize: 12, marginTop: "0.35rem" }}>เวลาให้บริการ 16:30 – 21:30 น.</p>
+                </div>
+              )}
+
+              {/* Customer Contact */}
+              <div style={{ marginBottom: "1.25rem" }}>
+                <label style={{ fontWeight: 700, fontSize: 14, color: "#18181b", display: "block", marginBottom: "0.5rem" }}>
+                  ข้อมูลผู้สั่ง {orderType === "delivery" && <span style={{ color: "#dc2626" }}>*</span>}
+                </label>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <input
+                    type="text"
+                    placeholder="ชื่อผู้สั่ง / ชื่อเล่น"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "0.65rem 0.85rem",
+                      borderRadius: 10,
+                      border: "1.5px solid #e4e4e7",
+                      fontSize: 14,
+                      fontFamily: "Noto Sans Thai, sans-serif",
+                      color: "#18181b",
+                      outline: "none",
+                    }}
+                    onFocus={(e) => ((e.currentTarget as HTMLInputElement).style.borderColor = "#027361")}
+                    onBlur={(e) => ((e.currentTarget as HTMLInputElement).style.borderColor = "#e4e4e7")}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="เบอร์โทรศัพท์ติดต่อ"
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "0.65rem 0.85rem",
+                      borderRadius: 10,
+                      border: "1.5px solid #e4e4e7",
+                      fontSize: 14,
+                      fontFamily: "Noto Sans Thai, sans-serif",
+                      color: "#18181b",
+                      outline: "none",
+                    }}
+                    onFocus={(e) => ((e.currentTarget as HTMLInputElement).style.borderColor = "#027361")}
+                    onBlur={(e) => ((e.currentTarget as HTMLInputElement).style.borderColor = "#e4e4e7")}
+                  />
+                </div>
+              </div>
+
+              {/* Delivery Address */}
+              {orderType === "delivery" && (
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <label style={{ fontWeight: 700, fontSize: 14, color: "#18181b", display: "block", marginBottom: "0.5rem" }}>
+                    ที่อยู่จัดส่ง <span style={{ color: "#dc2626" }}>*</span>
+                  </label>
+                  <textarea
+                    value={deliveryAddress}
+                    onChange={(e) => setDeliveryAddress(e.target.value)}
+                    placeholder="ระบุบ้านเลขที่, ซอย, จุดสังเกต หรือชื่อหอพัก..."
+                    rows={2}
+                    style={{
+                      width: "100%",
+                      padding: "0.65rem 0.85rem",
+                      borderRadius: 10,
+                      border: "1.5px solid #e4e4e7",
+                      fontSize: 14,
+                      fontFamily: "Noto Sans Thai, sans-serif",
+                      resize: "none",
+                      outline: "none",
+                      color: "#18181b",
+                    }}
+                    onFocus={(e) => ((e.currentTarget as HTMLTextAreaElement).style.borderColor = "#027361")}
+                    onBlur={(e) => ((e.currentTarget as HTMLTextAreaElement).style.borderColor = "#e4e4e7")}
+                  />
                 </div>
               )}
 

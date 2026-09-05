@@ -7,6 +7,9 @@ import {
   toppings,
   categoryLabel,
   toppingGroupLabel,
+  sweetnessOptions,
+  servingStyleOptions,
+  drinkTempOptions,
   type Category,
   type ToppingGroup,
   type MenuItem,
@@ -23,12 +26,28 @@ function OptionModal({
 }: {
   item: MenuItem;
   onClose: () => void;
-  onAdd: (toppings: Topping[], qty: number, variant?: Variant) => void;
+  onAdd: (
+    toppings: Topping[],
+    qty: number,
+    variant?: Variant,
+    sweetness?: string,
+    servingStyle?: string,
+    drinkTemp?: string
+  ) => void;
 }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [qty, setQty] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState<Variant | undefined>(
     item.variants?.[0]
+  );
+  const [selectedSweetness, setSelectedSweetness] = useState<string>(
+    item.allowSweetness ? sweetnessOptions[0] : ""
+  );
+  const [selectedServingStyle, setSelectedServingStyle] = useState<string>(
+    item.allowServingStyle ? servingStyleOptions[0] : ""
+  );
+  const [selectedDrinkTemp, setSelectedDrinkTemp] = useState<string>(
+    item.allowTemperature ? drinkTempOptions[0] : ""
   );
 
   const applicableToppings = item.toppingIds
@@ -48,7 +67,11 @@ function OptionModal({
   const toggleTopping = (id: string) => {
     setSelected((prev) => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   };
@@ -146,6 +169,102 @@ function OptionModal({
           </div>
         )}
 
+        {/* Drink Temperature selection (e.g. เย็น / ร้อน) */}
+        {item.allowTemperature && (
+          <div style={{ marginBottom: "1.25rem" }}>
+            <p style={{ fontWeight: 700, fontSize: 15, color: "#18181b", marginBottom: "0.5rem" }}>
+              เลือกประเภทเครื่องดื่ม
+            </p>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              {drinkTempOptions.map((temp) => (
+                <button
+                  key={temp}
+                  type="button"
+                  onClick={() => setSelectedDrinkTemp(temp)}
+                  style={{
+                    flex: 1,
+                    padding: "0.6rem",
+                    borderRadius: 10,
+                    border: `1.5px solid ${selectedDrinkTemp === temp ? "#027361" : "#e4e4e7"}`,
+                    backgroundColor: selectedDrinkTemp === temp ? "rgba(2,115,97,0.08)" : "#fafafa",
+                    color: selectedDrinkTemp === temp ? "#027361" : "#52525b",
+                    fontWeight: selectedDrinkTemp === temp ? 700 : 500,
+                    fontSize: 14,
+                    cursor: "pointer",
+                    transition: "all 0.18s",
+                  }}
+                >
+                  {temp}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sweetness selection */}
+        {item.allowSweetness && (
+          <div style={{ marginBottom: "1.25rem" }}>
+            <p style={{ fontWeight: 700, fontSize: 15, color: "#18181b", marginBottom: "0.5rem" }}>
+              ระดับความหวาน
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.5rem" }}>
+              {sweetnessOptions.map((sw) => (
+                <button
+                  key={sw}
+                  type="button"
+                  onClick={() => setSelectedSweetness(sw)}
+                  style={{
+                    padding: "0.55rem 0.35rem",
+                    borderRadius: 10,
+                    border: `1.5px solid ${selectedSweetness === sw ? "#027361" : "#e4e4e7"}`,
+                    backgroundColor: selectedSweetness === sw ? "rgba(2,115,97,0.08)" : "#fafafa",
+                    color: selectedSweetness === sw ? "#027361" : "#52525b",
+                    fontWeight: selectedSweetness === sw ? 700 : 500,
+                    fontSize: 12,
+                    cursor: "pointer",
+                    transition: "all 0.18s",
+                    textAlign: "center",
+                  }}
+                >
+                  {sw}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Serving style selection */}
+        {item.allowServingStyle && (
+          <div style={{ marginBottom: "1.25rem" }}>
+            <p style={{ fontWeight: 700, fontSize: 15, color: "#18181b", marginBottom: "0.5rem" }}>
+              รูปแบบการเสิร์ฟ
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.5rem" }}>
+              {servingStyleOptions.map((style) => (
+                <button
+                  key={style}
+                  type="button"
+                  onClick={() => setSelectedServingStyle(style)}
+                  style={{
+                    padding: "0.55rem 0.35rem",
+                    borderRadius: 10,
+                    border: `1.5px solid ${selectedServingStyle === style ? "#027361" : "#e4e4e7"}`,
+                    backgroundColor: selectedServingStyle === style ? "rgba(2,115,97,0.08)" : "#fafafa",
+                    color: selectedServingStyle === style ? "#027361" : "#52525b",
+                    fontWeight: selectedServingStyle === style ? 700 : 500,
+                    fontSize: 12,
+                    cursor: "pointer",
+                    transition: "all 0.18s",
+                    textAlign: "center",
+                  }}
+                >
+                  {style}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Toppings grouped */}
         {applicableToppings.length > 0 && (
           <div style={{ marginBottom: "1.25rem" }}>
@@ -236,7 +355,17 @@ function OptionModal({
 
         {/* Add to cart button */}
         <button
-          onClick={() => { onAdd(selectedToppings, qty, selectedVariant); onClose(); }}
+          onClick={() => {
+            onAdd(
+              selectedToppings,
+              qty,
+              selectedVariant,
+              item.allowSweetness ? selectedSweetness : undefined,
+              item.allowServingStyle ? selectedServingStyle : undefined,
+              item.allowTemperature ? selectedDrinkTemp : undefined
+            );
+            onClose();
+          }}
           style={{
             width: "100%",
             background: "linear-gradient(135deg, #027361, #04a882)",
@@ -299,7 +428,28 @@ function MenuCard({ item, onSelect }: { item: MenuItem; onSelect: () => void }) 
       <div style={{ position: "relative", height: 180, overflow: "hidden" }}>
         <Image src={item.image} alt={item.name} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
         {item.badge && (
-          <div style={{ position: "absolute", top: 10, left: 10, backgroundColor: item.badge === "Best Seller" ? "#9b1315" : "#027361", color: "#fff", padding: "0.2rem 0.6rem", borderRadius: 100, fontSize: 11, fontWeight: 700 }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 10,
+              left: 10,
+              backgroundColor: item.badge.includes("รอบสัปดาห์แรกของเดือน")
+                ? "#b45309"
+                : item.badge.includes("Best Seller")
+                ? "#9b1315"
+                : "#027361",
+              color: "#fff",
+              padding: "0.25rem 0.65rem",
+              borderRadius: 100,
+              fontSize: 11,
+              fontWeight: 700,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.25rem",
+            }}
+          >
+            {item.badge.includes("รอบสัปดาห์แรกของเดือน") && <span>📅</span>}
             {item.badge}
           </div>
         )}
@@ -345,7 +495,7 @@ function MenuCard({ item, onSelect }: { item: MenuItem; onSelect: () => void }) 
 }
 
 // ─── Main OrderingSection ────────────────────────────────────
-export default function OrderingSection({ onCheckout }: { onCheckout: () => void }) {
+export default function OrderingSection() {
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const addItem = useCartStore((s) => s.addItem);
@@ -529,7 +679,9 @@ export default function OrderingSection({ onCheckout }: { onCheckout: () => void
         <OptionModal
           item={selectedItem}
           onClose={() => setSelectedItem(null)}
-          onAdd={(tops, qty, variant) => addItem(selectedItem, tops, qty, variant)}
+          onAdd={(tops, qty, variant, sweetness, servingStyle, drinkTemp) =>
+            addItem(selectedItem, tops, qty, variant, sweetness, servingStyle, drinkTemp)
+          }
         />
       )}
     </section>

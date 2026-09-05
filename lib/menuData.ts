@@ -31,7 +31,27 @@ export interface MenuItem {
   variants?: Variant[];        // ตัวเลือก เช่น ไก่/เนื้อ
   note?: string;               // หมายเหตุ เช่น "ใช้แป้ง 2 แผ่น"
   available: boolean;
+  allowSweetness?: boolean;    // เลือกระดับความหวานได้
+  allowServingStyle?: boolean; // เลือกรูปแบบการเสิร์ฟ (หั่น/ม้วน/แยกนม)
+  allowTemperature?: boolean;  // เลือก ร้อน/เย็น
 }
+
+export const sweetnessOptions = [
+  "หวานปกติ (100%)",
+  "หวานน้อย (50%)",
+  "ไม่หวาน (0%)",
+] as const;
+
+export const servingStyleOptions = [
+  "หั่นชิ้นปกติ",
+  "ม้วนแผ่น",
+  "แยกนมข้นหวาน",
+] as const;
+
+export const drinkTempOptions = [
+  "เย็น (Iced)",
+  "ร้อน (Hot)",
+] as const;
 
 // ============================================================
 // 15 TOPPINGS — แบ่ง 3 กลุ่ม
@@ -79,6 +99,8 @@ export const menuItems: MenuItem[] = [
     category: "sweet",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "soft-roti",
@@ -92,6 +114,8 @@ export const menuItems: MenuItem[] = [
     note: "เมนูนี้ใช้แป้ง 2 ก้อนในการทำ เพิ่มความหนานุ่มเป็นพิเศษ",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "egg-roti",
@@ -103,6 +127,8 @@ export const menuItems: MenuItem[] = [
     category: "sweet",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "crispy-roti",
@@ -116,6 +142,8 @@ export const menuItems: MenuItem[] = [
     note: "1 ชุดเสิร์ฟโรตีกรอบ 2 แผ่น",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "bomb-roti",
@@ -127,6 +155,8 @@ export const menuItems: MenuItem[] = [
     category: "sweet",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "banana-roti",
@@ -138,6 +168,8 @@ export const menuItems: MenuItem[] = [
     category: "sweet",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "egg-banana-roti",
@@ -149,6 +181,8 @@ export const menuItems: MenuItem[] = [
     category: "sweet",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
   {
     id: "cheese-roti",
@@ -161,6 +195,8 @@ export const menuItems: MenuItem[] = [
     badge: "ชีสยืด",
     toppingIds: allSweetToppingIds,
     available: true,
+    allowSweetness: true,
+    allowServingStyle: true,
   },
 
   // ═════════════════════════════════════════════════════════════
@@ -174,7 +210,7 @@ export const menuItems: MenuItem[] = [
     price: 50,
     image: "/roti-namkaeng-new.jpg",
     category: "savory",
-    badge: "ซิกเนเจอร์",
+    badge: "ซิกเนเจอร์ · รอบสัปดาห์แรกของเดือน",
     variants: [
       { id: "chicken", name: "ไก่", price: 50 },
       { id: "beef",    name: "เนื้อ", price: 60 },
@@ -190,7 +226,7 @@ export const menuItems: MenuItem[] = [
     price: 50,
     image: "/roti-mataba-new.jpg",
     category: "savory",
-    badge: "Best Seller",
+    badge: "Best Seller · รอบสัปดาห์แรกของเดือน",
     variants: [
       { id: "chicken", name: "ไก่", price: 50 },
       { id: "beef",    name: "เนื้อ", price: 60 },
@@ -222,6 +258,8 @@ export const menuItems: MenuItem[] = [
     image: "/cha-chak.jpg",
     category: "drink",
     available: true,
+    allowSweetness: true,
+    allowTemperature: true,
   },
 ];
 

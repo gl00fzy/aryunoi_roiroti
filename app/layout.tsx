@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
+
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-noto-sans-thai",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aryunoi-roiroti.vercel.app"),
@@ -28,6 +36,14 @@ export const metadata: Metadata = {
     siteName: "อายุน้อยร้อยโรตี",
     locale: "th_TH",
     type: "website",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ร้านอายุน้อยร้อยโรตี มหาสารคาม",
+      },
+    ],
   },
 };
 
@@ -61,7 +77,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className={`${notoSansThai.variable} ${notoSansThai.className} min-h-full flex flex-col antialiased`}>{children}</body>
     </html>
   );
 }

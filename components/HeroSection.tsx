@@ -118,7 +118,7 @@ export default function HeroSection() {
           }}
         >
           รสสัมผัสต้นตำรับ{" "}
-          <span style={{ color: "#9b1315" }}>โรตี</span>
+          <span style={{ color: "#f87171" }}>โรตี</span>
           แท้
           <br />
           ส่งตรงจาก{" "}
@@ -128,7 +128,7 @@ export default function HeroSection() {
         {/* Sub-headline */}
         <p
           style={{
-            color: "rgba(255,255,255,0.75)",
+            color: "rgba(255,255,255,0.85)",
             fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
             fontWeight: 400,
             maxWidth: 580,
@@ -137,9 +137,9 @@ export default function HeroSection() {
           }}
         >
           อายุน้อยร้อยโรตี พร้อมเสิร์ฟเมนูซิกเนเจอร์{" "}
-          <span style={{ color: "#9b1315", fontWeight: 600 }}>โรตีน้ำแกง</span>{" "}
+          <span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตีน้ำแกง</span>{" "}
           และ{" "}
-          <span style={{ color: "#9b1315", fontWeight: 600 }}>โรตีมะตะบะ</span>{" "}
+          <span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตีมะตะบะ</span>{" "}
           ในเมืองมหาสารคาม
         </p>
 

@@ -8,11 +8,14 @@ import { MenuItem, Topping, Variant } from "./menuData";
 export type OrderType = "dine-in" | "takeout" | "delivery";
 
 export interface CartItem {
-  id: string; // unique per cart entry (itemId + toppings + variant combo)
+  id: string; // unique per cart entry (itemId + toppings + variant + options combo)
   menuItem: MenuItem;
   quantity: number;
   selectedToppings: Topping[];
   selectedVariant?: Variant;
+  selectedSweetness?: string;
+  selectedServingStyle?: string;
+  selectedDrinkTemp?: string;
   subtotal: number;
 }
 
@@ -21,13 +24,27 @@ interface CartStore {
   orderType: OrderType;
   pickupTime: string;
   customerNote: string;
+  customerName: string;
+  customerPhone: string;
+  deliveryAddress: string;
 
-  addItem: (item: MenuItem, toppings: Topping[], qty: number, variant?: Variant) => void;
+  addItem: (
+    item: MenuItem,
+    toppings: Topping[],
+    qty: number,
+    variant?: Variant,
+    sweetness?: string,
+    servingStyle?: string,
+    drinkTemp?: string
+  ) => void;
   removeItem: (cartId: string) => void;
   updateQuantity: (cartId: string, qty: number) => void;
   setOrderType: (type: OrderType) => void;
   setPickupTime: (time: string) => void;
   setCustomerNote: (note: string) => void;
+  setCustomerName: (name: string) => void;
+  setCustomerPhone: (phone: string) => void;
+  setDeliveryAddress: (address: string) => void;
   clearCart: () => void;
 
   // Computed
@@ -35,8 +52,15 @@ interface CartStore {
   totalPrice: () => number;
 }
 
-function buildCartId(itemId: string, toppingIds: string[], variantId?: string): string {
-  return `${itemId}__${toppingIds.sort().join("-")}__${variantId || "none"}`;
+function buildCartId(
+  itemId: string,
+  toppingIds: string[],
+  variantId?: string,
+  sweetness?: string,
+  servingStyle?: string,
+  drinkTemp?: string
+): string {
+  return `${itemId}__${toppingIds.sort().join("-")}__${variantId || "none"}__${sweetness || "none"}__${servingStyle || "none"}__${drinkTemp || "none"}`;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -46,12 +70,18 @@ export const useCartStore = create<CartStore>()(
       orderType: "takeout",
       pickupTime: "",
       customerNote: "",
+      customerName: "",
+      customerPhone: "",
+      deliveryAddress: "",
 
-      addItem: (menuItem, selectedToppings, quantity, selectedVariant) => {
+      addItem: (menuItem, selectedToppings, quantity, selectedVariant, sweetness, servingStyle, drinkTemp) => {
         const cartId = buildCartId(
           menuItem.id,
           selectedToppings.map((t) => t.id),
-          selectedVariant?.id
+          selectedVariant?.id,
+          sweetness,
+          servingStyle,
+          drinkTemp
         );
         const toppingTotal = selectedToppings.reduce((sum, t) => sum + t.price, 0);
         const basePrice = selectedVariant ? selectedVariant.price : menuItem.price;
@@ -76,7 +106,17 @@ export const useCartStore = create<CartStore>()(
           return {
             items: [
               ...state.items,
-              { id: cartId, menuItem, quantity, selectedToppings, selectedVariant, subtotal },
+              {
+                id: cartId,
+                menuItem,
+                quantity,
+                selectedToppings,
+                selectedVariant,
+                selectedSweetness: sweetness,
+                selectedServingStyle: servingStyle,
+                selectedDrinkTemp: drinkTemp,
+                subtotal,
+              },
             ],
           };
         });
@@ -102,8 +142,19 @@ export const useCartStore = create<CartStore>()(
       setOrderType: (orderType) => set({ orderType }),
       setPickupTime: (pickupTime) => set({ pickupTime }),
       setCustomerNote: (customerNote) => set({ customerNote }),
+      setCustomerName: (customerName) => set({ customerName }),
+      setCustomerPhone: (customerPhone) => set({ customerPhone }),
+      setDeliveryAddress: (deliveryAddress) => set({ deliveryAddress }),
       clearCart: () =>
-        set({ items: [], orderType: "takeout", pickupTime: "", customerNote: "" }),
+        set({
+          items: [],
+          orderType: "takeout",
+          pickupTime: "",
+          customerNote: "",
+          customerName: "",
+          customerPhone: "",
+          deliveryAddress: "",
+        }),
 
       totalItems: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
       totalPrice: () => get().items.reduce((sum, i) => sum + i.subtotal, 0),

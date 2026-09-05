@@ -85,8 +85,8 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
                 อายุน้อย
               </p>
               <p style={{ margin: 0, lineHeight: 1.2 }}>
-                <span style={{ color: "#9b1315", fontWeight: 800, fontSize: 15 }}>ร้อย</span>
-                <span style={{ color: "#9b1315", fontWeight: 800, fontSize: 15 }}>โรตี</span>
+                <span style={{ color: "#f87171", fontWeight: 800, fontSize: 15 }}>ร้อย</span>
+                <span style={{ color: "#f87171", fontWeight: 800, fontSize: 15 }}>โรตี</span>
               </p>
             </div>
           </a>
@@ -120,6 +120,7 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
             {/* Cart button */}
             <button
               id="cart-btn"
+              aria-label="เปิดตะกร้าสินค้า"
               onClick={onCartOpen}
               style={{
                 position: "relative",
@@ -147,7 +148,7 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
               {totalItems > 0 && (
                 <span
                   style={{
-                    background: "#9b1315",
+                    background: "#dc2626",
                     color: "#fff",
                     borderRadius: "50%",
                     width: 20,
@@ -189,6 +190,7 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
             {/* Mobile toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "ปิดเมนู" : "เปิดเมนู"}
               style={{
                 background: "none",
                 border: "none",

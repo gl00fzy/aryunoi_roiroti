@@ -62,11 +62,11 @@ export default function AboutSection() {
           >
             ร้าน{" "}
             <span style={{ color: "#04a882" }}>อายุน้อย</span>
-            <span style={{ color: "#9b1315" }}>ร้อยโรตี</span>
+            <span style={{ color: "#f87171" }}>ร้อยโรตี</span>
           </h2>
           <p
             style={{
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(255,255,255,0.7)",
               marginTop: "0.75rem",
               fontSize: 15,
               maxWidth: 480,
@@ -74,8 +74,8 @@ export default function AboutSection() {
               lineHeight: 1.7,
             }}
           >
-            เราคือร้าน<span style={{ color: "#9b1315" }}>โรตี</span>ต้นตำรับ
-            ที่นำรสชาติแท้จาก<span style={{ color: "#04a882" }}>แดนใต้</span>
+            เราคือร้าน<span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตี</span>ต้นตำรับ
+            ที่นำรสชาติแท้จาก<span style={{ color: "#04a882", fontWeight: 700 }}>แดนใต้</span>
             มาฝากคนมหาสารคาม ทำสดทุกวัน วัตถุดิบคัดสรร
           </p>
         </div>
