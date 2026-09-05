@@ -237,10 +237,15 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
                 {l.label}
               </button>
             ))}
-            <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", paddingTop: "0.5rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("อายุน้อยร้อยโรตี มหาสารคาม")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", gap: "0.5rem", alignItems: "center", paddingTop: "0.5rem", borderTop: "1px solid rgba(255,255,255,0.08)", textDecoration: "none" }}
+            >
               <MapPin size={14} color="#027361" />
               <span style={{ color: "#a1a1aa", fontSize: 13 }}>210 ซอยศรีสวัสดิ์ฯ มหาสารคาม</span>
-            </div>
+            </a>
             <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
               <Phone size={14} color="#027361" />
               <span style={{ color: "#a1a1aa", fontSize: 13 }}>062 498 2749</span>

@@ -1,10 +1,9 @@
 "use client";
 import { MapPin, Phone, Clock, ExternalLink } from "lucide-react";
 
-const MAPS_EMBED =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.3!2d103.3003!3d16.1854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDExJzA3LjQiTiAxMDPCsDE4JzAxLjEiRQ!5e0!3m2!1sth!2sth!4v1627000000000!5m2!1sth!2sth";
-const MAPS_LINK =
-  "https://maps.google.com/?q=210+ซอยศรีสวัสดิ์ดำเนิน+ตำบลตลาด+อำเภอเมืองมหาสารคาม+มหาสารคาม+44000";
+const MAPS_QUERY = encodeURIComponent("อายุน้อยร้อยโรตี มหาสารคาม");
+const MAPS_EMBED = `https://maps.google.com/maps?q=${MAPS_QUERY}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`;
 
 const infoItems = [
   {

@@ -84,10 +84,15 @@ export default function Footer() {
               <Phone size={14} color="#04a882" />
               062 498 2749
             </a>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: 13 }}>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("อายุน้อยร้อยโรตี มหาสารคาม")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: 13, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}
+            >
               <MapPin size={14} color="#04a882" style={{ flexShrink: 0, marginTop: 2 }} />
               <span>210 ซอยศรีสวัสดิ์ดำเนิน ต.ตลาด อ.เมืองมหาสารคาม มหาสารคาม 44000</span>
-            </div>
+            </a>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: 13 }}>
               <Clock size={14} color="#04a882" />
               <span>16:30 – 21:30 น. (ปิดวันเสาร์)</span>
