@@ -11,7 +11,7 @@ const notoSansThai = Noto_Sans_Thai({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aryunoi-roiroti.vercel.app"),
-  title: "อายุน้อยร้อยโรตี — ร้านโรตีมหาสารคาม โรตีสารคาม โรตีมมส สูตรต้นตำรับแดนใต้",
+  title: "อายุน้อยร้อยโรตี | โรตีมหาสารคาม",
   description:
     "ร้านอายุน้อยร้อยโรตี ร้านโรตีมหาสารคาม โรตีสารคาม โรตีมมส เมนูซิกเนเจอร์โรตีน้ำแกงและโรตีมะตะบะ สูตรต้นตำรับจากแดนใต้ เปิดทุกวัน (ยกเว้นวันเสาร์) 16:30–21:30 น.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "อายุน้อยร้อยโรตี — ร้านโรตีมหาสารคาม โรตีสารคาม โรตีมมส",
+    title: "อายุน้อยร้อยโรตี | โรตีมหาสารคาม",
     description: "รสสัมผัสต้นตำรับโรตีแท้ ส่งตรงจากแดนใต้ ร้านโรตีมหาสารคาม ใกล้มมส.",
     url: "https://aryunoi-roiroti.vercel.app",
     siteName: "อายุน้อยร้อยโรตี",
