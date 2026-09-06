@@ -80,10 +80,10 @@ export default function HeroSection() {
           position: "relative",
           zIndex: 2,
           textAlign: "center",
-          padding: "2rem 1.5rem",
           maxWidth: 800,
           animation: "fadeInUp 1s ease forwards",
         }}
+        className="px-4 pt-24 pb-8 sm:px-6 sm:py-12"
       >
         {/* Badge */}
         <div
@@ -91,17 +91,18 @@ export default function HeroSection() {
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "0.5rem",
+            gap: "0.45rem",
             backgroundColor: "rgba(2,115,97,0.2)",
             border: "1px solid rgba(2,115,97,0.5)",
             borderRadius: 100,
-            padding: "0.35rem 1rem",
-            marginBottom: "1.5rem",
+            padding: "0.35rem 0.9rem",
+            marginBottom: "1.25rem",
             backdropFilter: "blur(8px)",
+            maxWidth: "100%",
           }}
         >
-          <UtensilsCrossed size={13} color="#04a882" />
-          <span style={{ color: "#04a882", fontSize: 13, fontWeight: 600 }}>
+          <UtensilsCrossed size={14} color="#04a882" style={{ flexShrink: 0 }} />
+          <span style={{ color: "#04a882", fontSize: "clamp(11px, 3.2vw, 13px)", fontWeight: 600, whiteSpace: "nowrap" }}>
             เปิดทุกวัน (ยกเว้น วันเสาร์) · 16:30 – 21:30 น.
           </span>
         </div>
@@ -110,36 +111,38 @@ export default function HeroSection() {
         <h1
           style={{
             color: "#ffffff",
-            fontSize: "clamp(2.2rem, 6vw, 4rem)",
+            fontSize: "clamp(1.75rem, 5.8vw, 3.8rem)",
             fontWeight: 800,
-            lineHeight: 1.25,
+            lineHeight: 1.35,
             marginBottom: "1.25rem",
             textShadow: "0 2px 20px rgba(0,0,0,0.5)",
           }}
         >
-          รสสัมผัสต้นตำรับ{" "}
-          <span style={{ color: "#f87171" }}>โรตี</span>
-          แท้
+          <span style={{ display: "inline-block" }}>รสสัมผัสต้นตำรับ</span>{" "}
+          <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+            <span style={{ color: "#f87171" }}>โรตี</span>แท้
+          </span>
           <br />
-          ส่งตรงจาก{" "}
-          <span style={{ color: "#04a882" }}>แดนใต้</span>
+          <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+            ส่งตรงจาก <span style={{ color: "#04a882" }}>แดนใต้</span>
+          </span>
         </h1>
 
         {/* Sub-headline */}
         <p
           style={{
             color: "rgba(255,255,255,0.85)",
-            fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+            fontSize: "clamp(0.95rem, 2.8vw, 1.15rem)",
             fontWeight: 400,
             maxWidth: 580,
-            margin: "0 auto 2.5rem",
+            margin: "0 auto 2.25rem",
             lineHeight: 1.7,
           }}
         >
           อายุน้อยร้อยโรตี พร้อมเสิร์ฟเมนูซิกเนเจอร์{" "}
-          <span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตีน้ำแกง</span>{" "}
+          <span style={{ color: "#fca5a5", fontWeight: 700, display: "inline-block", whiteSpace: "nowrap" }}>โรตีน้ำแกง</span>{" "}
           และ{" "}
-          <span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตีมะตะบะ</span>{" "}
+          <span style={{ color: "#fca5a5", fontWeight: 700, display: "inline-block", whiteSpace: "nowrap" }}>โรตีมะตะบะ</span>{" "}
           ในเมืองมหาสารคาม
         </p>
 
@@ -147,10 +150,11 @@ export default function HeroSection() {
         <div
           style={{
             display: "flex",
-            gap: "1rem",
+            gap: "0.75rem",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
+          className="flex-col sm:flex-row items-center w-full max-w-xs sm:max-w-none mx-auto"
         >
           <button
             id="cta-order"
@@ -161,14 +165,15 @@ export default function HeroSection() {
               borderRadius: 12,
               color: "#fff",
               cursor: "pointer",
-              padding: "0.85rem 2rem",
-              fontSize: 16,
+              padding: "0.85rem 1.75rem",
+              fontSize: 15,
               fontFamily: "Noto Sans Thai, sans-serif",
               fontWeight: 700,
               boxShadow: "0 4px 24px rgba(2,115,97,0.4)",
               transition: "all 0.2s ease",
               letterSpacing: "0.01em",
             }}
+            className="w-full sm:w-auto text-center"
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(2,115,97,0.5)";
@@ -190,13 +195,14 @@ export default function HeroSection() {
               borderRadius: 12,
               color: "#fff",
               cursor: "pointer",
-              padding: "0.85rem 2rem",
-              fontSize: 16,
+              padding: "0.85rem 1.75rem",
+              fontSize: 15,
               fontFamily: "Noto Sans Thai, sans-serif",
               fontWeight: 600,
               backdropFilter: "blur(8px)",
               transition: "all 0.2s ease",
             }}
+            className="w-full sm:w-auto text-center"
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)";
               (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";

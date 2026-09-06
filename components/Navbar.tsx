@@ -50,18 +50,18 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
           style={{
             maxWidth: 1200,
             margin: "0 auto",
-            padding: "0 1.5rem",
+            padding: "0 1rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            height: 68,
+            height: 64,
           }}
         >
           {/* Logo */}
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0 }}
           >
             <div
               style={{
@@ -80,19 +80,18 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
             >
               ร
             </div>
-            <div>
+            <div style={{ whiteSpace: "nowrap" }}>
               <p style={{ color: "#ffffff", fontWeight: 700, fontSize: 15, lineHeight: 1.2, margin: 0 }}>
                 อายุน้อย
               </p>
               <p style={{ margin: 0, lineHeight: 1.2 }}>
-                <span style={{ color: "#f87171", fontWeight: 800, fontSize: 15 }}>ร้อย</span>
-                <span style={{ color: "#f87171", fontWeight: 800, fontSize: 15 }}>โรตี</span>
+                <span style={{ color: "#f87171", fontWeight: 800, fontSize: 15 }}>ร้อยโรตี</span>
               </p>
             </div>
           </a>
 
-          {/* Desktop Links */}
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }} className="hidden md:flex">
+          {/* Desktop Links (Hidden on mobile via Tailwind hidden md:flex) */}
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((l) => (
               <button
                 key={l.href}
@@ -196,12 +195,11 @@ export default function Navbar({ onCartOpen }: NavbarProps) {
                 border: "none",
                 color: "#fff",
                 cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
+                padding: "0.4rem",
               }}
-              className="flex md:hidden"
+              className="flex md:hidden items-center justify-center"
             >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
