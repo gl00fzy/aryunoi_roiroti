@@ -627,7 +627,7 @@ export default function OrderingSection() {
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
             <a
-              href="https://food.grab.com"
+              href="https://grab.onelink.me/2695613898?pid=inappsharing&c=3-C3DACEVZL8DKRN&is_retargeting=true&af_dp=grab%3A%2F%2Fopen%3FscreenType%3DGRABFOOD%26sourceID%3DA4pcqCZkS4%26merchantIDs%3D3-C3DACEVZL8DKRN&af_force_deeplink=true&af_web_dp=https%3A%2F%2Fwww.grab.com%2Fdownload"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -649,7 +649,7 @@ export default function OrderingSection() {
               🟢 Grab Food
             </a>
             <a
-              href="https://liff.line.me/1601919508-Mekm4L15"
+              href="https://wongn.ai/22A1zg"
               target="_blank"
               rel="noopener noreferrer"
               style={{
