@@ -80,7 +80,12 @@ export default function HeroSection() {
           position: "relative",
           zIndex: 2,
           textAlign: "center",
+          width: "100%",
           maxWidth: 800,
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           animation: "fadeInUp 1s ease forwards",
         }}
         className="px-4 pt-24 pb-8 sm:px-6 sm:py-12"
@@ -152,9 +157,11 @@ export default function HeroSection() {
             display: "flex",
             gap: "0.75rem",
             justifyContent: "center",
-            flexWrap: "wrap",
+            alignItems: "center",
+            width: "100%",
+            margin: "0 auto",
           }}
-          className="flex-col sm:flex-row items-center w-full max-w-xs sm:max-w-none mx-auto"
+          className="flex-col sm:!flex-row"
         >
           <button
             id="cta-order"
@@ -172,8 +179,14 @@ export default function HeroSection() {
               boxShadow: "0 4px 24px rgba(2,115,97,0.4)",
               transition: "all 0.2s ease",
               letterSpacing: "0.01em",
+              width: "100%",
+              maxWidth: 360,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
             }}
-            className="w-full sm:w-auto text-center"
+            className="sm:!w-auto"
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(2,115,97,0.5)";
@@ -201,8 +214,14 @@ export default function HeroSection() {
               fontWeight: 600,
               backdropFilter: "blur(8px)",
               transition: "all 0.2s ease",
+              width: "100%",
+              maxWidth: 360,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
             }}
-            className="w-full sm:w-auto text-center"
+            className="sm:!w-auto"
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)";
               (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
