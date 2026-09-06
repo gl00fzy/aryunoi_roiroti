@@ -68,14 +68,16 @@ export default function AboutSection() {
               color: "rgba(255,255,255,0.7)",
               marginTop: "0.75rem",
               fontSize: 15,
-              maxWidth: 480,
               margin: "0.75rem auto 0",
               lineHeight: 1.7,
             }}
+            className="max-w-md md:max-w-none md:whitespace-nowrap"
           >
             เราคือร้าน<span style={{ color: "#fca5a5", fontWeight: 700 }}>โรตี</span>ต้นตำรับ
             ที่นำรสชาติแท้จาก<span style={{ color: "#04a882", fontWeight: 700 }}>แดนใต้</span>
-            มาฝากคนมหาสารคาม ทำสดทุกวัน วัตถุดิบคัดสรร
+            มาฝากคนมหาสารคาม{" "}
+            <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>ทำสดทุกวัน</span>{" "}
+            <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>วัตถุดิบคัดสรร</span>
           </p>
         </div>
 

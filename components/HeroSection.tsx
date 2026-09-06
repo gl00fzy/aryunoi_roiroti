@@ -139,16 +139,16 @@ export default function HeroSection() {
             color: "rgba(255,255,255,0.85)",
             fontSize: "clamp(0.95rem, 2.8vw, 1.15rem)",
             fontWeight: 400,
-            maxWidth: 580,
             margin: "0 auto 2.25rem",
             lineHeight: 1.7,
           }}
+          className="max-w-xl md:max-w-none md:whitespace-nowrap"
         >
           อายุน้อยร้อยโรตี พร้อมเสิร์ฟเมนูซิกเนเจอร์{" "}
           <span style={{ color: "#fca5a5", fontWeight: 700, display: "inline-block", whiteSpace: "nowrap" }}>โรตีน้ำแกง</span>{" "}
           และ{" "}
           <span style={{ color: "#fca5a5", fontWeight: 700, display: "inline-block", whiteSpace: "nowrap" }}>โรตีมะตะบะ</span>{" "}
-          ในเมืองมหาสารคาม
+          <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>ในเมืองมหาสารคาม</span>
         </p>
 
         {/* CTA Buttons */}
