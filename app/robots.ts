@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://aryunoi-roiroti.vercel.app/sitemap.xml',
+    sitemap: 'https://www.aryunoiroiroti.com/sitemap.xml',
   };
 }
