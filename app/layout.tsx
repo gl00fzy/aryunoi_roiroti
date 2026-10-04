@@ -29,6 +29,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
   openGraph: {
     title: "อายุน้อยร้อยโรตี | โรตีมหาสารคาม",
     description: "รสสัมผัสต้นตำรับโรตีแท้ ส่งตรงจากแดนใต้ ร้านโรตีมหาสารคาม ใกล้มมส.",
