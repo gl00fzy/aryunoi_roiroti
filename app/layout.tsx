@@ -31,10 +31,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
     ],
-    apple: "/icon.svg",
-    shortcut: "/icon.svg",
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.png",
   },
   openGraph: {
     title: "อายุน้อยร้อยโรตี | โรตีมหาสารคาม",
